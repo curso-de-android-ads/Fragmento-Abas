@@ -84,6 +84,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -124,6 +126,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             super(fm);
         }
 
+
+
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
@@ -133,6 +137,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             switch (position){
                 case 0:
                     fragment = new FragmentoExemploA();
+
+                    if(fragment.isAdded()){
+                        getSupportFragmentManager().beginTransaction().add(R.id.pager, fragment).commit();
+                    }
+
+
+
                     break;
                 case 1:
                     fragment = new FragmentoExemploB();

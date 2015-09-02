@@ -1,26 +1,24 @@
 package com.cako.witalocarlos.fragmentoabas;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.zip.Inflater;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragmentoExemploA.OnFragmentInteractionListener} interface
+ * {@link FragmentoInternoB.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragmentoExemploA#newInstance} factory method to
+ * Use the {@link FragmentoInternoB#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentoExemploA extends Fragment  {
+public class FragmentoInternoB extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,8 +28,6 @@ public class FragmentoExemploA extends Fragment  {
     private String mParam1;
     private String mParam2;
 
-    private FragmentTabHost tabHost;
-
 
 
     /**
@@ -40,11 +36,11 @@ public class FragmentoExemploA extends Fragment  {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentoExemploA.
+     * @return A new instance of fragment FragmentoExemploB.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentoExemploA newInstance(String param1, String param2) {
-        FragmentoExemploA fragment = new FragmentoExemploA();
+    public static FragmentoInternoB newInstance(String param1, String param2) {
+        FragmentoInternoB fragment = new FragmentoInternoB();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -52,24 +48,25 @@ public class FragmentoExemploA extends Fragment  {
         return fragment;
     }
 
-    public FragmentoExemploA() {
+    public FragmentoInternoB() {
         // Required empty public constructor
     }
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragmento_exemplo, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragmento_interno_b, container, false);
 
-        tabHost = (FragmentTabHost) view.findViewById(android.R.id.tabhost);
-        tabHost.setup(getActivity(), getChildFragmentManager(), R.id.realtabcontent);
-
-        tabHost.addTab(tabHost.newTabSpec("internoa").setIndicator("Interno A"),
-                FragmentoInternoA.class, null);
-        tabHost.addTab(tabHost.newTabSpec("internob").setIndicator("Interno B"),
-                FragmentoInternoB.class, null);
+        Button bt = (Button) view.findViewById(R.id.bt_exemplo);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Clicado B", Toast.LENGTH_LONG).show();
+            }
+        });
 
         return view;
     }
@@ -78,10 +75,6 @@ public class FragmentoExemploA extends Fragment  {
     public void onButtonPressed(Uri uri) {
 
     }
-
-
-
-
 
     /**
      * This interface must be implemented by activities that contain this
